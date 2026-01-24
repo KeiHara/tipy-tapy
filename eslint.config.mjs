@@ -1,16 +1,57 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
+import eslint from "@eslint/js";
+import tseslint from "typescript-eslint";
+import reactPlugin from "eslint-plugin-react";
+import reactHooksPlugin from "eslint-plugin-react-hooks";
+import nextPlugin from "@next/eslint-plugin-next";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+export default [
+  // Global ignores
+  {
+    ignores: [".next/", "node_modules/", "public/"],
+  },
 
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
+  // Base ESLint recommended
+  eslint.configs.recommended,
 
-const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  // TypeScript
+  ...tseslint.configs.recommended,
+
+  // React and Next.js
+  {
+    files: ["**/*.{js,jsx,ts,tsx}"],
+    plugins: {
+      react: reactPlugin,
+      "react-hooks": reactHooksPlugin,
+      "@next/next": nextPlugin,
+    },
+    rules: {
+      ...reactPlugin.configs.recommended.rules,
+      ...reactPlugin.configs["jsx-runtime"].rules,
+      ...reactHooksPlugin.configs.recommended.rules,
+      ...nextPlugin.configs.recommended.rules,
+      ...nextPlugin.configs["core-web-vitals"].rules,
+      // Disable prop-types since we use TypeScript
+      "react/prop-types": "off",
+    },
+    settings: {
+      react: {
+        version: "detect",
+      },
+    },
+  },
+
+  // Max 100 lines for TSX files (excluding shadcn UI and existing large files)
+  {
+    files: ["**/*.tsx"],
+    ignores: [
+      "components/ui/**",
+      "components/login-form.tsx",
+      "components/sign-up-form.tsx",
+      "components/supabase-logo.tsx",
+      "components/tutorial/fetch-data-steps.tsx",
+    ],
+    rules: {
+      "max-lines": ["error", { max: 100, skipBlankLines: true, skipComments: true }],
+    },
+  },
 ];
-
-export default eslintConfig;
