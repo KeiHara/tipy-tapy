@@ -1,8 +1,8 @@
 import eslint from "@eslint/js";
-import tseslint from "typescript-eslint";
+import nextPlugin from "@next/eslint-plugin-next";
 import reactPlugin from "eslint-plugin-react";
 import reactHooksPlugin from "eslint-plugin-react-hooks";
-import nextPlugin from "@next/eslint-plugin-next";
+import tseslint from "typescript-eslint";
 
 export default [
   // Global ignores
@@ -43,13 +43,7 @@ export default [
   // Max 100 lines for TSX files (excluding shadcn UI and existing large files)
   {
     files: ["**/*.tsx"],
-    ignores: [
-      "components/ui/**",
-      "components/login-form.tsx",
-      "components/sign-up-form.tsx",
-      "components/supabase-logo.tsx",
-      "components/tutorial/fetch-data-steps.tsx",
-    ],
+    ignores: ["components/ui/**"],
     rules: {
       "max-lines": ["error", { max: 100, skipBlankLines: true, skipComments: true }],
     },
