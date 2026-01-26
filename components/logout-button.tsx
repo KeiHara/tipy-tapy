@@ -12,7 +12,7 @@ export function LogoutButton() {
   const logout = useCallback(async () => {
     const supabase = createClient();
     await supabase.auth.signOut();
-    router.push("/auth/login");
+    router.push("/");
     toast.success("Logged out successfully");
   }, [router]);
 

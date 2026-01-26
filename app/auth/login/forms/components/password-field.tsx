@@ -2,6 +2,7 @@
 
 import { useFieldContext } from "@/app/auth/login/forms/form-context";
 import { LoginFormValues } from "@/app/auth/login/forms/schema";
+import { Button } from "@/components/ui/button";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
@@ -14,12 +15,9 @@ export function PasswordField() {
     <Field data-invalid={isInvalid}>
       <div className="flex items-center">
         <FieldLabel htmlFor={field.name}>Password</FieldLabel>
-        <Link
-          href="/auth/forgot-password"
-          className="ml-auto text-sm underline-offset-4 hover:underline"
-        >
-          Forgot your password?
-        </Link>
+        <Button variant="link" size="sm">
+          <Link href="/auth/forgot-password">Forgot your password?</Link>
+        </Button>
       </div>
       <Input
         id={field.name}

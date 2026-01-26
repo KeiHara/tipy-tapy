@@ -28,9 +28,9 @@ export function LoginForm() {
           </FieldGroup>
           <div className="mt-4 text-center text-sm">
             Don&apos;t have an account?{" "}
-            <Link href="/auth/sign-up" className="underline underline-offset-4">
-              Sign up
-            </Link>
+            <Button variant="link" size="sm">
+              <Link href="/auth/sign-up">Sign up</Link>
+            </Button>
           </div>
         </form>
       </CardContent>

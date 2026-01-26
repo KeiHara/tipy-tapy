@@ -3,6 +3,7 @@ import { Suspense } from "react";
 
 import { AuthButton } from "@/components/auth-button";
 import { ThemeSwitcher } from "@/components/theme-switcher";
+import { Button } from "@/components/ui/button";
 import { H1, P } from "@/components/ui/typography";
 
 export default function Home() {
@@ -10,9 +11,9 @@ export default function Home() {
     <main className="min-h-screen flex flex-col">
       <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
         <div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
-          <Link href="/" className="font-semibold">
-            Tipy Tapy
-          </Link>
+          <Button variant="link" size="sm">
+            <Link href="/">Tipy Tapy</Link>
+          </Button>
           <div className="flex items-center gap-4">
             <Suspense>
               <AuthButton />
