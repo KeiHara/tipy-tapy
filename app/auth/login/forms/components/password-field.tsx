@@ -2,10 +2,9 @@
 
 import { useFieldContext } from "@/app/auth/login/forms/form-context";
 import { LoginFormValues } from "@/app/auth/login/forms/schema";
-import { Button } from "@/components/ui/button";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import Link from "next/link";
+import { Link } from "@/components/ui/link";
 
 export function PasswordField() {
   const field = useFieldContext<LoginFormValues["password"]>();
@@ -13,11 +12,9 @@ export function PasswordField() {
 
   return (
     <Field data-invalid={isInvalid}>
-      <div className="flex items-center">
+      <div className="flex items-center gap-1">
         <FieldLabel htmlFor={field.name}>Password</FieldLabel>
-        <Button variant="link" size="sm">
-          <Link href="/auth/forgot-password">Forgot your password?</Link>
-        </Button>
+        <Link href="/auth/forgot-password">Forgot your password?</Link>
       </div>
       <Input
         id={field.name}
