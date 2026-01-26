@@ -6,6 +6,7 @@ import { Suspense } from "react";
 import { AuthButton } from "@/components/auth-button";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import { Button } from "@/components/ui/button";
+import { LoginToast } from "./editor/components/login-toast";
 import "./globals.css";
 import { Providers } from "./providers";
 
@@ -49,6 +50,9 @@ export default function RootLayout({
         className={`${arOneSans.variable} ${abhayaLibre.variable} ${firaCode.variable} font-sans antialiased`}
       >
         <Providers>
+          <Suspense>
+            <LoginToast />
+          </Suspense>
           <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-11/12 max-w-5xl flex justify-center rounded-xl border border-foreground/10 bg-background/80 backdrop-blur-md shadow-lg h-14">
             <div className="w-full flex justify-between items-center p-3 px-5 text-sm">
               <Button variant="ghost" size="sm">
