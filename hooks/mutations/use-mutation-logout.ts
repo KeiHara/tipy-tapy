@@ -1,12 +1,12 @@
 "use client";
 
 import { toast } from "@/components/ui/sonner";
+import { userQueryKey } from "@/hooks/queries";
 import { createClient } from "@/lib/supabase/client";
-import { useMutation } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export function useMutationLogout() {
-  const router = useRouter();
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async () => {
@@ -18,7 +18,7 @@ export function useMutationLogout() {
       }
     },
     onSuccess: () => {
-      router.push("/");
+      queryClient.invalidateQueries({ queryKey: userQueryKey });
       toast.success("Logged out successfully");
     },
     onError: (error) => {
