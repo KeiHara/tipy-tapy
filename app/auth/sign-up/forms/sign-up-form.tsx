@@ -5,7 +5,7 @@ import { GoogleSignInButton } from "@/components/google-sign-in-button";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { FieldGroup } from "@/components/ui/field";
-import Link from "next/link";
+import { Link } from "@/components/ui/link";
 
 export function SignUpForm() {
   const { form } = useSignUpForm();
@@ -30,10 +30,7 @@ export function SignUpForm() {
             <GoogleSignInButton mode="signup" />
           </FieldGroup>
           <div className="mt-4 text-center text-sm">
-            Already have an account?{" "}
-            <Button variant="link" size="sm">
-              <Link href="/auth/login">Login</Link>
-            </Button>
+            Already have an account? <Link href="/auth/login">Login</Link>
           </div>
         </form>
       </CardContent>

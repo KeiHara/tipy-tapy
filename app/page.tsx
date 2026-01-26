@@ -11,7 +11,7 @@ export default function Home() {
     <main className="min-h-screen flex flex-col">
       <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
         <div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
-          <Button variant="link" size="sm">
+          <Button variant="ghost" size="sm">
             <Link href="/">Tipy Tapy</Link>
           </Button>
           <div className="flex items-center gap-4">

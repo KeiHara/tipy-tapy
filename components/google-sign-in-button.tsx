@@ -1,37 +1,23 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { createClient } from "@/lib/supabase/client";
+import { useMutationSignInWithGoogle } from "@/hooks/mutations";
 import { IconBrandGoogle } from "@tabler/icons-react";
-import { useCallback, useState } from "react";
 
 interface GoogleSignInButtonProps {
   mode?: "login" | "signup";
 }
 
 export function GoogleSignInButton({ mode = "login" }: GoogleSignInButtonProps) {
-  const [isLoading, setIsLoading] = useState(false);
+  const { mutate: signInWithGoogle, isPending } = useMutationSignInWithGoogle();
 
-  const handleGoogleSignIn = useCallback(async () => {
-    setIsLoading(true);
-    const supabase = createClient();
-
-    try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: "google",
-        options: {
-          redirectTo: `${window.location.origin}/auth/callback`,
-        },
-      });
-
-      if (error) {
-        throw error;
-      }
-    } catch (error) {
-      console.error("Google sign-in error:", error);
-      setIsLoading(false);
-    }
-  }, []);
+  const handleGoogleSignIn = () => {
+    signInWithGoogle(undefined, {
+      onError: (error) => {
+        console.error("Google sign-in error:", error);
+      },
+    });
+  };
 
   return (
     <Button
@@ -39,10 +25,10 @@ export function GoogleSignInButton({ mode = "login" }: GoogleSignInButtonProps) 
       variant="outline"
       className="w-full"
       onClick={handleGoogleSignIn}
-      disabled={isLoading}
+      disabled={isPending}
     >
       <IconBrandGoogle />
-      {isLoading ? "Signing in..." : mode === "login" ? "Login with Google" : "Sign up with Google"}
+      {isPending ? "Signing in..." : mode === "login" ? "Login with Google" : "Sign up with Google"}
     </Button>
   );
 }
