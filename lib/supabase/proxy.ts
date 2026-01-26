@@ -30,10 +30,10 @@ export async function updateSession(request: NextRequest) {
   const { data } = await supabase.auth.getClaims();
   const user = data?.claims;
 
-  // Redirect logged-in users from / to /protected
+  // Redirect logged-in users from / to /editor
   if (user && request.nextUrl.pathname === "/") {
     const url = request.nextUrl.clone();
-    url.pathname = "/protected";
+    url.pathname = "/editor";
     return NextResponse.redirect(url);
   }
 

@@ -2,32 +2,22 @@
 
 import { useAppForm } from "@/app/auth/login/forms/form-hook";
 import { loginSchema, type LoginFormValues } from "@/app/auth/login/forms/schema";
-import { createClient } from "@/lib/supabase/client";
+import { useMutationLogin } from "@/app/auth/login/hooks/mutations";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 import { toast } from "sonner";
 
 export function useLoginForm() {
   const router = useRouter();
+  const { mutateAsync: login } = useMutationLogin();
 
   const onSubmit = useCallback(
     async ({ value }: { value: LoginFormValues }) => {
-      const supabase = createClient();
-
-      const { error } = await supabase.auth.signInWithPassword({
-        email: value.email,
-        password: value.password,
-      });
-
-      if (error) {
-        toast.error(error.message);
-        return;
-      }
-
-      router.push("/protected");
+      await login({ email: value.email, password: value.password });
+      router.push("/editor");
       toast.success("Logged in successfully");
     },
-    [router]
+    [login, router]
   );
 
   const form = useAppForm({

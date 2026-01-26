@@ -2,32 +2,20 @@
 
 import { useAppForm } from "@/app/auth/sign-up/forms/form-hook";
 import { signUpSchema, type SignUpFormValues } from "@/app/auth/sign-up/forms/schema";
-import { createClient } from "@/lib/supabase/client";
+import { useMutationSignUp } from "@/app/auth/sign-up/hooks/mutations";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
-import { toast } from "sonner";
 
 export function useSignUpForm() {
   const router = useRouter();
+  const { mutateAsync: signUp } = useMutationSignUp();
 
   const onSubmit = useCallback(
     async ({ value }: { value: SignUpFormValues }) => {
-      const supabase = createClient();
-
-      const { error } = await supabase.auth.signUp({
-        email: value.email,
-        password: value.password,
-        options: { emailRedirectTo: `${window.location.origin}/protected` },
-      });
-
-      if (error) {
-        toast.error(error.message);
-        return;
-      }
-
+      await signUp({ email: value.email, password: value.password });
       router.push("/auth/sign-up-success");
     },
-    [router]
+    [signUp, router]
   );
 
   const form = useAppForm({

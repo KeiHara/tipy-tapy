@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
 import { AR_One_Sans, Abhaya_Libre, Fira_Code } from "next/font/google";
+import Link from "next/link";
+import { Suspense } from "react";
+
+import { AuthButton } from "@/components/auth-button";
+import { ThemeSwitcher } from "@/components/theme-switcher";
+import { Button } from "@/components/ui/button";
 import { Providers } from "./providers";
 import "./globals.css";
 
@@ -42,7 +48,22 @@ export default function RootLayout({
       <body
         className={`${arOneSans.variable} ${abhayaLibre.variable} ${firaCode.variable} font-sans antialiased`}
       >
-        <Providers>{children}</Providers>
+        <Providers>
+          <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
+            <div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
+              <Button variant="ghost" size="sm">
+                <Link href="/">Tipy Tapy</Link>
+              </Button>
+              <div className="flex items-center gap-4">
+                <Suspense>
+                  <AuthButton />
+                </Suspense>
+                <ThemeSwitcher />
+              </div>
+            </div>
+          </nav>
+          {children}
+        </Providers>
       </body>
     </html>
   );
