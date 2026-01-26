@@ -18,7 +18,7 @@ export function useMutationLogout() {
       }
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: userQueryKey });
+      queryClient.setQueryData([userQueryKey], null);
       toast.success("Logged out successfully");
     },
     onError: (error) => {

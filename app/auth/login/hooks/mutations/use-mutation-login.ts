@@ -29,7 +29,7 @@ export function useMutationLogin() {
       return data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: userQueryKey });
+      queryClient.invalidateQueries({ queryKey: [userQueryKey] });
     },
     onError: (error) => {
       toast.error(error.message);
