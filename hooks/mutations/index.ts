@@ -1,1 +1,1 @@
-export { useMutationSignInWithGoogle } from "@/hooks/mutations/use-google-sign-in";
+export { useMutationSignInWithGoogle } from "@/hooks/mutations/use-mutations-sign-in-with-google";

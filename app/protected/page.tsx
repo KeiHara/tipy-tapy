@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 
+import { LoginToast } from "@/app/protected/components/login-toast";
 import { H2, H3, P } from "@/components/ui/typography";
 import { createClient } from "@/lib/supabase/server";
 
@@ -30,6 +31,9 @@ async function UserDetails() {
 export default function ProtectedPage() {
   return (
     <div className="flex flex-col gap-8">
+      <Suspense>
+        <LoginToast />
+      </Suspense>
       <div>
         <H2 className="border-b-0 mb-4">Protected Page</H2>
         <P className="text-muted-foreground">

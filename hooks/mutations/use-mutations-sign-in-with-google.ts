@@ -1,8 +1,8 @@
 "use client";
 
+import { toast } from "@/components/ui/sonner";
 import { createClient } from "@/lib/supabase/client";
 import { useMutation } from "@tanstack/react-query";
-import { toast } from "@/components/ui/sonner";
 
 export function useMutationSignInWithGoogle() {
   return useMutation({
@@ -24,7 +24,7 @@ export function useMutationSignInWithGoogle() {
       return data;
     },
     onSuccess: () => {
-      toast.success("Signed in with Google successfully");
+      toast.success("Redirecting to Google...");
     },
     onError: (error) => {
       toast.error(error.message);

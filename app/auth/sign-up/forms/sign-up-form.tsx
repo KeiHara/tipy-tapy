@@ -1,7 +1,7 @@
 "use client";
 
 import { useSignUpForm } from "@/app/auth/sign-up/forms/hooks";
-import { GoogleSignInButton } from "@/components/google-sign-in-button";
+import { GoogleSignInButton } from "@/app/auth/components/google-sign-in-button";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { FieldGroup } from "@/components/ui/field";
@@ -24,8 +24,8 @@ export function SignUpForm() {
             <form.AppField name="repeatPassword">
               {(field) => <field.RepeatPasswordField />}
             </form.AppField>
-            <Button type="submit" className="w-full">
-              Sign up
+            <Button type="submit" className="w-full" disabled={form.state.isSubmitting}>
+              {form.state.isSubmitting ? "Signing up..." : "Sign up"}
             </Button>
             <GoogleSignInButton mode="signup" />
           </FieldGroup>

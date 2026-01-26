@@ -11,20 +11,12 @@ interface GoogleSignInButtonProps {
 export function GoogleSignInButton({ mode = "login" }: GoogleSignInButtonProps) {
   const { mutate: signInWithGoogle, isPending } = useMutationSignInWithGoogle();
 
-  const handleGoogleSignIn = () => {
-    signInWithGoogle(undefined, {
-      onError: (error) => {
-        console.error("Google sign-in error:", error);
-      },
-    });
-  };
-
   return (
     <Button
       type="button"
       variant="outline"
       className="w-full"
-      onClick={handleGoogleSignIn}
+      onClick={() => signInWithGoogle()}
       disabled={isPending}
     >
       <IconBrandGoogle />

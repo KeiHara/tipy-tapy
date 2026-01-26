@@ -1,7 +1,7 @@
 "use client";
 
 import { useLoginForm } from "@/app/auth/login/forms/hooks";
-import { GoogleSignInButton } from "@/components/google-sign-in-button";
+import { GoogleSignInButton } from "@/app/auth/components/google-sign-in-button";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { FieldGroup } from "@/components/ui/field";
@@ -9,7 +9,6 @@ import { Link } from "@/components/ui/link";
 
 export function LoginForm() {
   const { form } = useLoginForm();
-  const isSubmitting = form.useStore((state) => state.isSubmitting);
 
   return (
     <Card className="flex flex-col gap-6">
@@ -22,8 +21,8 @@ export function LoginForm() {
           <FieldGroup>
             <form.AppField name="email">{(field) => <field.EmailField />}</form.AppField>
             <form.AppField name="password">{(field) => <field.PasswordField />}</form.AppField>
-            <Button type="submit" className="w-full" disabled={isSubmitting}>
-              {isSubmitting ? "Logging in..." : "Login"}
+            <Button type="submit" className="w-full" disabled={form.state.isSubmitting}>
+              {form.state.isSubmitting ? "Logging in..." : "Login"}
             </Button>
             <GoogleSignInButton mode="login" />
           </FieldGroup>
