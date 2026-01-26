@@ -6,8 +6,8 @@ import { Suspense } from "react";
 import { AuthButton } from "@/components/auth-button";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import { Button } from "@/components/ui/button";
-import { Providers } from "./providers";
 import "./globals.css";
+import { Providers } from "./providers";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -49,8 +49,8 @@ export default function RootLayout({
         className={`${arOneSans.variable} ${abhayaLibre.variable} ${firaCode.variable} font-sans antialiased`}
       >
         <Providers>
-          <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-            <div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
+          <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-11/12 max-w-5xl flex justify-center rounded-xl border border-foreground/10 bg-background/80 backdrop-blur-md shadow-lg h-14">
+            <div className="w-full flex justify-between items-center p-3 px-5 text-sm">
               <Button variant="ghost" size="sm">
                 <Link href="/">Tipy Tapy</Link>
               </Button>
@@ -62,7 +62,7 @@ export default function RootLayout({
               </div>
             </div>
           </nav>
-          {children}
+          <div>{children}</div>
         </Providers>
       </body>
     </html>
