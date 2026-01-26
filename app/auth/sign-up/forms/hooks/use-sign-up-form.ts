@@ -5,6 +5,7 @@ import { signUpSchema, type SignUpFormValues } from "@/app/auth/sign-up/forms/sc
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
+import { toast } from "sonner";
 
 export function useSignUpForm() {
   const router = useRouter();
@@ -20,7 +21,8 @@ export function useSignUpForm() {
       });
 
       if (error) {
-        throw new Error(error.message);
+        toast.error(error.message);
+        return;
       }
 
       router.push("/auth/sign-up-success");

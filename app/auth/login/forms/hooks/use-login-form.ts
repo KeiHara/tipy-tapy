@@ -5,6 +5,7 @@ import { loginSchema, type LoginFormValues } from "@/app/auth/login/forms/schema
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
+import { toast } from "sonner";
 
 export function useLoginForm() {
   const router = useRouter();
@@ -19,10 +20,12 @@ export function useLoginForm() {
       });
 
       if (error) {
-        throw new Error(error.message);
+        toast.error(error.message);
+        return;
       }
 
       router.push("/protected");
+      toast.success("Logged in successfully");
     },
     [router]
   );

@@ -1,6 +1,7 @@
 "use client";
 
 import { useSignUpForm } from "@/app/auth/sign-up/forms/hooks";
+import { GoogleSignInButton } from "@/components/google-sign-in-button";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { FieldGroup } from "@/components/ui/field";
@@ -12,7 +13,7 @@ export function SignUpForm() {
   return (
     <Card className="flex flex-col gap-6">
       <CardHeader>
-        <CardTitle className="text-2xl">Sign up</CardTitle>
+        <CardTitle>Sign up</CardTitle>
         <CardDescription>Create a new account</CardDescription>
       </CardHeader>
       <CardContent>
@@ -26,6 +27,7 @@ export function SignUpForm() {
             <Button type="submit" className="w-full">
               Sign up
             </Button>
+            <GoogleSignInButton mode="signup" />
           </FieldGroup>
           <div className="mt-4 text-center text-sm">
             Already have an account?{" "}

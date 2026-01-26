@@ -3,14 +3,15 @@ import { Suspense } from "react";
 
 import { AuthButton } from "@/components/auth-button";
 import { ThemeSwitcher } from "@/components/theme-switcher";
+import { P } from "@/components/ui/typography";
 
 export default function ProtectedLayout({ children }: { children: React.ReactNode }) {
   return (
     <main className="min-h-screen flex flex-col">
       <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
         <div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
-          <Link href="/" className="font-semibold">
-            Tipy Tapy
+          <Link href="/">
+            <P className="font-semibold">Tipy Tapy</P>
           </Link>
           <div className="flex items-center gap-4">
             <Suspense>

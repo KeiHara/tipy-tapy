@@ -3,6 +3,7 @@ import { Suspense } from "react";
 
 import { AuthButton } from "@/components/auth-button";
 import { ThemeSwitcher } from "@/components/theme-switcher";
+import { H1, P } from "@/components/ui/typography";
 
 export default function Home() {
   return (
@@ -22,10 +23,10 @@ export default function Home() {
       </nav>
 
       <div className="flex-1 flex flex-col items-center justify-center p-8">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Tipy Tapy</h1>
-        <p className="text-muted-foreground text-center max-w-md">
+        <H1 className="mb-4">Welcome to Tipy Tapy</H1>
+        <P className="text-muted-foreground text-center max-w-md">
           Get started by editing this page or sign in to access protected content.
-        </p>
+        </P>
       </div>
     </main>
   );
