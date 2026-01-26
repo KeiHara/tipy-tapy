@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { AR_One_Sans, Abhaya_Libre, Fira_Code } from "next/font/google";
 import { Providers } from "./providers";
 import "./globals.css";
 
@@ -13,8 +13,21 @@ export const metadata: Metadata = {
   description: "The fastest way to build apps with Next.js and Supabase",
 };
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const arOneSans = AR_One_Sans({
+  variable: "--font-sans",
+  display: "swap",
+  subsets: ["latin"],
+});
+
+const abhayaLibre = Abhaya_Libre({
+  variable: "--font-serif",
+  display: "swap",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+});
+
+const firaCode = Fira_Code({
+  variable: "--font-mono",
   display: "swap",
   subsets: ["latin"],
 });
@@ -26,7 +39,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.className} antialiased`}>
+      <body
+        className={`${arOneSans.variable} ${abhayaLibre.variable} ${firaCode.variable} font-sans antialiased`}
+      >
         <Providers>{children}</Providers>
       </body>
     </html>
