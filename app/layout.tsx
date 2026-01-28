@@ -4,7 +4,7 @@ import { Suspense } from "react";
 
 import { AuthButton } from "@/components/layout/auth-button";
 import { Nav } from "@/components/layout/nav";
-import { LoginToast } from "./editor/components/login-toast";
+import { LoginToast } from "../components/login-toast";
 import "./globals.css";
 import { Providers } from "./providers";
 
