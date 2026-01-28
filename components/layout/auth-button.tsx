@@ -1,11 +1,15 @@
+"use client";
+
+import { Suspense } from "react";
 import Link from "next/link";
 
-import { getUser } from "@/lib/supabase/server";
+import { useQueryUser } from "@/hooks/use-query-user";
 import { LogoutButton } from "@/components/logout-button";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 
-export async function AuthButton() {
-  const user = await getUser();
+function AuthButtonContent() {
+  const { data: user } = useQueryUser();
 
   return user ? (
     <div className="flex items-center gap-4">
@@ -20,5 +24,13 @@ export async function AuthButton() {
         <Link href="/auth/sign-up">Sign up</Link>
       </Button>
     </div>
+  );
+}
+
+export function AuthButton() {
+  return (
+    <Suspense fallback={<Skeleton className="h-8 w-20" />}>
+      <AuthButtonContent />
+    </Suspense>
   );
 }
