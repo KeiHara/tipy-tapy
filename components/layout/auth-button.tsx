@@ -3,7 +3,7 @@
 import { Suspense } from "react";
 import Link from "next/link";
 
-import { useQueryUser } from "@/hooks/use-query-user";
+import { useQueryUser } from "@/hooks/queries";
 import { LogoutButton } from "@/components/logout-button";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
