@@ -5,7 +5,7 @@ import type { TextareaAutosizeProps } from "react-textarea-autosize";
 import ReactTextareaAutosize from "react-textarea-autosize";
 
 // -- Hooks --
-import { useIsomorphicLayoutEffect } from "@/hooks/use-isomorphic-layout-effect";
+import { useIsomorphicLayoutEffect } from "@/hooks/tiptap/use-isomorphic-layout-effect";
 
 export function TextareaAutosize({ ...props }: TextareaAutosizeProps) {
   const [isRerendered, setIsRerendered] = useState(false);

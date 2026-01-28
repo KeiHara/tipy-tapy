@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { AR_One_Sans, Abhaya_Libre, Fira_Code } from "next/font/google";
 import { Suspense } from "react";
 
-import { Nav } from "@/components/nav";
-import { getUser } from "@/lib/supabase/server";
+import { AuthButton } from "@/components/layout/auth-button";
+import { Nav } from "@/components/layout/nav";
 import { LoginToast } from "./editor/components/login-toast";
 import "./globals.css";
 import { Providers } from "./providers";
@@ -37,13 +37,11 @@ const firaCode = Fira_Code({
   subsets: ["latin"],
 });
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const user = await getUser();
-
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -53,7 +51,9 @@ export default async function RootLayout({
           <Suspense>
             <LoginToast />
           </Suspense>
-          <Nav user={user} />
+          <Nav>
+            <AuthButton />
+          </Nav>
           <div>{children}</div>
         </Providers>
       </body>

@@ -1,15 +1,12 @@
-"use client";
-
-import type { User } from "@supabase/supabase-js";
 import Link from "next/link";
-import { LogoutButton } from "./logout-button";
-import { Button } from "./ui/button";
 
-interface AuthButtonProps {
-  user: User | null;
-}
+import { getUser } from "@/lib/supabase/server";
+import { LogoutButton } from "@/components/logout-button";
+import { Button } from "@/components/ui/button";
 
-export function AuthButton({ user }: AuthButtonProps) {
+export async function AuthButton() {
+  const user = await getUser();
+
   return user ? (
     <div className="flex items-center gap-4">
       <LogoutButton />

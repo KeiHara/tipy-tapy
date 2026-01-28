@@ -1,9 +1,8 @@
 "use client";
 
-import { toast } from "@/components/ui/sonner";
-import { userQueryKey } from "@/hooks/queries";
 import { createClient } from "@/lib/supabase/client";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+
+import { useMutation } from "@tanstack/react-query";
 
 type LoginParams = {
   email: string;
@@ -11,8 +10,6 @@ type LoginParams = {
 };
 
 export function useMutationLogin() {
-  const queryClient = useQueryClient();
-
   return useMutation({
     mutationFn: async ({ email, password }: LoginParams) => {
       const supabase = createClient();
@@ -27,12 +24,6 @@ export function useMutationLogin() {
       }
 
       return data;
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [userQueryKey] });
-    },
-    onError: (error) => {
-      toast.error(error.message);
     },
   });
 }
