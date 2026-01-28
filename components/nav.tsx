@@ -1,8 +1,8 @@
 "use client";
 
+import type { User } from "@supabase/supabase-js";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Suspense } from "react";
 
 import { AuthButton } from "@/components/auth-button";
 import { ThemeSwitcher } from "@/components/theme-switcher";
@@ -10,7 +10,11 @@ import { Button } from "@/components/ui/button";
 
 const AUTH_ROUTES = ["/auth/login", "/auth/sign-up", "/auth/forgot-password"];
 
-export function Nav() {
+interface NavProps {
+  user: User | null;
+}
+
+export function Nav({ user }: NavProps) {
   const pathname = usePathname();
 
   if (AUTH_ROUTES.includes(pathname)) {
@@ -24,9 +28,7 @@ export function Nav() {
           <Link href="/">Tipy Tapy</Link>
         </Button>
         <div className="flex items-center gap-4">
-          <Suspense>
-            <AuthButton />
-          </Suspense>
+          <AuthButton user={user} />
           <ThemeSwitcher />
         </div>
       </div>

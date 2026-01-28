@@ -3,6 +3,7 @@ import { AR_One_Sans, Abhaya_Libre, Fira_Code } from "next/font/google";
 import { Suspense } from "react";
 
 import { Nav } from "@/components/nav";
+import { getUser } from "@/lib/supabase/server";
 import { LoginToast } from "./editor/components/login-toast";
 import "./globals.css";
 import { Providers } from "./providers";
@@ -36,11 +37,13 @@ const firaCode = Fira_Code({
   subsets: ["latin"],
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const user = await getUser();
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -50,7 +53,7 @@ export default function RootLayout({
           <Suspense>
             <LoginToast />
           </Suspense>
-          <Nav />
+          <Nav user={user} />
           <div>{children}</div>
         </Providers>
       </body>

@@ -1,17 +1,15 @@
 "use client";
 
-import { useQueryUser } from "@/hooks/queries";
+import type { User } from "@supabase/supabase-js";
 import Link from "next/link";
 import { LogoutButton } from "./logout-button";
 import { Button } from "./ui/button";
 
-export function AuthButton() {
-  const { data: user, isLoading } = useQueryUser();
+interface AuthButtonProps {
+  user: User | null;
+}
 
-  if (isLoading) {
-    return <div className="h-9 w-20 animate-pulse rounded bg-muted" />;
-  }
-
+export function AuthButton({ user }: AuthButtonProps) {
   return user ? (
     <div className="flex items-center gap-4">
       <LogoutButton />

@@ -40,10 +40,10 @@ export default [
     },
   },
 
-  // Max 100 lines for TSX files (excluding shadcn UI and existing large files)
+  // Max 100 lines for TSX files (excluding shadcn UI and tiptap components)
   {
     files: ["**/*.tsx"],
-    ignores: ["components/ui/**"],
+    ignores: ["components/ui/**", "components/tiptap-*/**"],
     rules: {
       "max-lines": ["error", { max: 100, skipBlankLines: true, skipComments: true }],
     },
