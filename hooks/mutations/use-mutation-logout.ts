@@ -2,6 +2,7 @@
 
 import { toast } from "@/components/ui/sonner";
 import { createClient } from "@/lib/supabase/client";
+import { AUTH_USER_QUERY_KEY } from "@/hooks/queries/use-query-user";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
@@ -18,6 +19,7 @@ export function useMutationLogout() {
       }
     },
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: AUTH_USER_QUERY_KEY });
       queryClient.clear();
       toast.success("Logged out successfully");
     },
