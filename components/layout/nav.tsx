@@ -3,15 +3,16 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { useQueryUser } from "@/hooks/queries";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import { Button } from "@/components/ui/button";
 
-const AUTH_ROUTES = ["/auth/login", "/auth/sign-up", "/auth/forgot-password"];
-
 export function Nav({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const { data: user, isLoading } = useQueryUser();
 
-  if (AUTH_ROUTES.includes(pathname)) {
+  // Hide nav if not on home page or if user is logged in (sidebar replaces it)
+  if (pathname !== "/" || (user && !isLoading)) {
     return null;
   }
 

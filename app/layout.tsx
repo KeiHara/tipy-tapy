@@ -4,6 +4,7 @@ import { Suspense } from "react";
 
 import { AuthButton } from "@/components/layout/auth-button";
 import { Nav } from "@/components/layout/nav";
+import { SidebarLayout } from "@/components/layout/sidenav";
 import { LoginToast } from "../components/login-toast";
 import "./globals.css";
 import { Providers } from "./providers";
@@ -54,9 +55,7 @@ export default function RootLayout({
           <Nav>
             <AuthButton />
           </Nav>
-          <div className="flex flex-col flex-1 h-full w-11/12 max-w-5xl mx-auto pt-20">
-            {children}
-          </div>
+          <SidebarLayout>{children}</SidebarLayout>
         </Providers>
       </body>
     </html>

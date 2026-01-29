@@ -1,6 +1,6 @@
 "use client";
 
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { createClient } from "@/lib/supabase/client";
 
 export const AUTH_USER_QUERY_KEY = "auth-user";
@@ -8,7 +8,7 @@ export const AUTH_USER_QUERY_KEY = "auth-user";
 export function useQueryUser() {
   const supabase = createClient();
 
-  return useSuspenseQuery({
+  return useQuery({
     queryKey: [AUTH_USER_QUERY_KEY],
     queryFn: async () => {
       const {
