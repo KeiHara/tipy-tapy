@@ -19,7 +19,7 @@ export function useMutationLogout() {
       }
     },
     onSuccess: () => {
-      queryClient.setQueryData(AUTH_USER_QUERY_KEY, null);
+      queryClient.setQueryData([AUTH_USER_QUERY_KEY], null);
       queryClient.clear();
       toast.success("Logged out successfully");
     },

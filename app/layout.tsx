@@ -43,9 +43,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="h-full">
       <body
-        className={`${arOneSans.variable} ${abhayaLibre.variable} ${firaCode.variable} font-sans antialiased`}
+        className={`${arOneSans.variable} ${abhayaLibre.variable} ${firaCode.variable} font-sans antialiased h-full flex flex-col`}
       >
         <Providers>
           <Suspense>
@@ -54,7 +54,9 @@ export default function RootLayout({
           <Nav>
             <AuthButton />
           </Nav>
-          <div>{children}</div>
+          <div className="flex flex-col flex-1 h-full w-11/12 max-w-5xl mx-auto pt-20">
+            {children}
+          </div>
         </Providers>
       </body>
     </html>

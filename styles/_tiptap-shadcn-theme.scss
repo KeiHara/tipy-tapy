@@ -1,0 +1,215 @@
+/**
+ * TipTap to shadcn/ui Theme Bridge
+ *
+ * This file overrides TipTap's default CSS variables to use shadcn's theme variables,
+ * ensuring visual consistency across the application.
+ */
+
+:root {
+  /* ==========================================
+     Base Colors
+     ========================================== */
+  --white: var(--background);
+  --black: var(--foreground);
+  --transparent: transparent;
+
+  /* ==========================================
+     Toolbar
+     ========================================== */
+  --tt-toolbar-bg-color: var(--card);
+  --tt-toolbar-border-color: var(--border);
+
+  /* ==========================================
+     Card / Popover
+     ========================================== */
+  --tt-card-bg-color: var(--popover);
+  --tt-card-border-color: var(--border);
+  --tiptap-card-bg-color: var(--popover);
+  --tiptap-card-border-color: var(--border);
+  --tiptap-card-group-label-color: var(--muted-foreground);
+
+  /* ==========================================
+     Dropdown Menu
+     ========================================== */
+  --tt-dropdown-menu-bg-color: var(--popover);
+  --tt-dropdown-menu-border-color: var(--border);
+  --tt-dropdown-menu-text-color: var(--popover-foreground);
+
+  /* ==========================================
+     Border & Separator
+     ========================================== */
+  --tt-border-color: var(--border);
+  --tt-border-color-tint: var(--border);
+  --tt-link-border-color: var(--border);
+
+  /* ==========================================
+     Selection & Cursor
+     ========================================== */
+  --tt-cursor-color: var(--primary);
+  --tt-selection-color: color-mix(in srgb, var(--primary) 20%, transparent);
+
+  /* ==========================================
+     Background
+     ========================================== */
+  --tt-bg-color: var(--background);
+  --tt-sidebar-bg-color: var(--sidebar);
+
+  /* ==========================================
+     Shadows (map to shadcn shadows)
+     ========================================== */
+  --tt-shadow-elevated-md: var(--shadow-lg);
+
+  /* ==========================================
+     Border Radius (map to shadcn radius)
+     ========================================== */
+  --tt-radius-xxs: calc(var(--radius) - 6px);
+  --tt-radius-xs: calc(var(--radius) - 4px);
+  --tt-radius-sm: calc(var(--radius) - 2px);
+  --tt-radius-md: var(--radius);
+  --tt-radius-lg: calc(var(--radius) + 2px);
+  --tt-radius-xl: calc(var(--radius) + 4px);
+}
+
+.dark {
+  /* Dark mode uses the same mappings since shadcn handles the theme switching */
+  --tt-toolbar-bg-color: var(--card);
+  --tt-toolbar-border-color: var(--border);
+  --tt-card-bg-color: var(--popover);
+  --tt-card-border-color: var(--border);
+  --tiptap-card-bg-color: var(--popover);
+  --tiptap-card-border-color: var(--border);
+  --tt-dropdown-menu-bg-color: var(--popover);
+  --tt-dropdown-menu-border-color: var(--border);
+  --tt-dropdown-menu-text-color: var(--popover-foreground);
+  --tt-border-color: var(--border);
+  --tt-border-color-tint: var(--border);
+  --tt-link-border-color: var(--border);
+  --tt-cursor-color: var(--primary);
+  --tt-bg-color: var(--background);
+  --tt-sidebar-bg-color: var(--sidebar);
+}
+
+/* ==========================================
+   Button Color Overrides
+   ========================================== */
+.tiptap-button {
+  /* Default state */
+  --tt-button-default-bg-color: transparent;
+  --tt-button-default-text-color: var(--muted-foreground);
+  --tt-button-default-icon-color: var(--muted-foreground);
+  --tt-button-default-icon-sub-color: var(--muted-foreground);
+  --tt-button-default-dropdown-arrows-color: var(--muted-foreground);
+
+  /* Hover state */
+  --tt-button-hover-bg-color: var(--accent);
+  --tt-button-hover-text-color: var(--accent-foreground);
+  --tt-button-hover-icon-color: var(--accent-foreground);
+  --tt-button-hover-icon-sub-color: var(--accent-foreground);
+  --tt-button-hover-dropdown-arrows-color: var(--accent-foreground);
+
+  /* Active state */
+  --tt-button-active-bg-color: var(--secondary);
+  --tt-button-active-text-color: var(--secondary-foreground);
+  --tt-button-active-icon-color: var(--primary);
+  --tt-button-active-icon-sub-color: var(--secondary-foreground);
+  --tt-button-active-dropdown-arrows-color: var(--secondary-foreground);
+
+  /* Active hover state */
+  --tt-button-active-hover-bg-color: var(--secondary);
+  --tt-button-active-hover-bg-color-emphasized: var(--primary);
+  --tt-button-active-hover-bg-color-subdued: var(--secondary);
+
+  /* Emphasized active state */
+  --tt-button-active-bg-color-emphasized: var(--primary);
+  --tt-button-active-text-color-emphasized: var(--primary-foreground);
+  --tt-button-active-icon-color-emphasized: var(--primary-foreground);
+  --tt-button-active-icon-sub-color-emphasized: var(--primary-foreground);
+  --tt-button-active-dropdown-arrows-color-emphasized: var(--primary-foreground);
+
+  /* Subdued active state */
+  --tt-button-active-bg-color-subdued: var(--secondary);
+  --tt-button-active-text-color-subdued: var(--secondary-foreground);
+  --tt-button-active-icon-color-subdued: var(--secondary-foreground);
+  --tt-button-active-icon-sub-color-subdued: var(--muted-foreground);
+  --tt-button-active-dropdown-arrows-color-subdued: var(--muted-foreground);
+
+  /* Disabled state */
+  --tt-button-disabled-bg-color: transparent;
+  --tt-button-disabled-text-color: var(--muted-foreground);
+  --tt-button-disabled-icon-color: var(--muted-foreground);
+  --tt-button-disabled-icon-sub-color: var(--muted-foreground);
+  --tt-button-disabled-dropdown-arrows-color: var(--muted-foreground);
+
+  /* Ghost button overrides */
+  &[data-style="ghost"] {
+    --tt-button-default-bg-color: transparent;
+    --tt-button-hover-bg-color: var(--accent);
+    --tt-button-active-bg-color: var(--secondary);
+    --tt-button-active-hover-bg-color: var(--secondary);
+    --tt-button-disabled-bg-color: transparent;
+  }
+
+  /* Primary button overrides */
+  &[data-style="primary"] {
+    --tt-button-default-bg-color: var(--primary);
+    --tt-button-default-text-color: var(--primary-foreground);
+    --tt-button-default-icon-color: var(--primary-foreground);
+    --tt-button-hover-bg-color: color-mix(in srgb, var(--primary) 90%, black);
+    --tt-button-hover-text-color: var(--primary-foreground);
+    --tt-button-hover-icon-color: var(--primary-foreground);
+  }
+}
+
+/* Dark mode button overrides - use same values since shadcn handles theming */
+.dark .tiptap-button {
+  --tt-button-default-bg-color: transparent;
+  --tt-button-default-text-color: var(--muted-foreground);
+  --tt-button-default-icon-color: var(--muted-foreground);
+  --tt-button-hover-bg-color: var(--accent);
+  --tt-button-hover-text-color: var(--accent-foreground);
+  --tt-button-hover-icon-color: var(--accent-foreground);
+  --tt-button-active-bg-color: var(--secondary);
+  --tt-button-active-icon-color: var(--primary);
+  --tt-button-disabled-bg-color: transparent;
+  --tt-button-disabled-text-color: var(--muted-foreground);
+  --tt-button-disabled-icon-color: var(--muted-foreground);
+}
+
+/* ==========================================
+   Separator Override
+   ========================================== */
+.tiptap-separator {
+  --tt-link-border-color: var(--border);
+}
+
+/* ==========================================
+   Card Override
+   ========================================== */
+.tiptap-card {
+  --tiptap-card-bg-color: var(--popover);
+  --tiptap-card-border-color: var(--border);
+  background-color: var(--popover);
+  border-color: var(--border);
+}
+
+/* ==========================================
+   Dropdown Menu Override
+   ========================================== */
+.tiptap-dropdown-menu {
+  --tt-dropdown-menu-bg-color: var(--popover);
+  --tt-dropdown-menu-border-color: var(--border);
+  --tt-dropdown-menu-text-color: var(--popover-foreground);
+}
+
+/* ==========================================
+   Toolbar Override
+   ========================================== */
+.tiptap-toolbar {
+  background-color: var(--card);
+  border-color: var(--border);
+
+  &[data-variant="floating"] {
+    background-color: var(--popover);
+    border-color: var(--border);
+  }
+}

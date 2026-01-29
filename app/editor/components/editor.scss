@@ -1,0 +1,48 @@
+@use "@/components/tiptap-node/paragraph-node/paragraph-node.scss";
+@use "@/components/tiptap-node/heading-node/heading-node.scss";
+@use "@/components/tiptap-node/list-node/list-node.scss";
+@use "@/components/tiptap-node/blockquote-node/blockquote-node.scss";
+@use "@/components/tiptap-node/code-block-node/code-block-node.scss";
+@use "@/components/tiptap-node/horizontal-rule-node/horizontal-rule-node.scss";
+@use "@/components/tiptap-node/image-node/image-node.scss";
+
+.editor-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  gap: 1rem;
+}
+
+.editor-toolbar-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+
+  .tiptap-toolbar {
+    background-color: transparent;
+    border: none;
+  }
+}
+
+.editor-content-wrapper {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background-color: var(--card);
+
+  .tiptap.ProseMirror {
+    min-height: 500px;
+    outline: none;
+    color: var(--foreground);
+
+    > *:first-child {
+      margin-top: 0;
+    }
+  }
+}

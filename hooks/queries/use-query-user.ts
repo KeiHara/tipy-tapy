@@ -3,13 +3,13 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createClient } from "@/lib/supabase/client";
 
-export const AUTH_USER_QUERY_KEY = ["auth-user"] as const;
+export const AUTH_USER_QUERY_KEY = "auth-user";
 
 export function useQueryUser() {
   const supabase = createClient();
 
   return useSuspenseQuery({
-    queryKey: AUTH_USER_QUERY_KEY,
+    queryKey: [AUTH_USER_QUERY_KEY],
     queryFn: async () => {
       const {
         data: { user },
