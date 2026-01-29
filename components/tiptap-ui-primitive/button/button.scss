@@ -212,6 +212,7 @@
   &:hover:not([data-active-item="true"]):not([disabled]),
   &[data-active-item="true"]:not([disabled]),
   &[data-highlighted]:not([disabled]):not([data-highlighted="false"]) {
+    cursor: pointer;
     background-color: var(--tt-button-hover-bg-color);
     color: var(--tt-button-hover-text-color);
 
